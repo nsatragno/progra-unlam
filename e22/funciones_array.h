@@ -22,8 +22,8 @@ void leer_del_teclado(int *array, const int size);
  * Devuelve 0 si falló, 1 de lo contrario.
  */
 int insertar(int *array,
-              const int size, 
-              const int ultima_posicion, // Arranca de 0.
-              int posicion, // Arranca de 1.
-              int elemento);
+             const int size, 
+             const int ultima_posicion, // Arranca de 0.
+             int posicion, // Arranca de 1.
+             int elemento);
 
