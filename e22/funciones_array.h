@@ -13,17 +13,19 @@ void inicializar_con_pares(int *array, const int size);
 void imprimir(int *array, const int size);
 
 /*
- * Lee hasta |size| del teclado.
+ * Lee hasta |size| del teclado, guardando en |cantidad_elementos| la cantidad
+ * de elementos leída.
  */
-void leer_del_teclado(int *array, const int size);
+void leer_del_teclado(int *array, int *cantidad_elementos, const int size);
 
 /*
  * Inserta un |elemento| en |array| de |size|, en la |posicion| determinada.
+ * Actualiza ultima_posicion si se agregaron valores.
  * Devuelve 0 si falló, 1 de lo contrario.
  */
 int insertar(int *array,
              const int size, 
-             const int ultima_posicion, // Arranca de 0.
-             int posicion, // Arranca de 1.
+             int *ultima_posicion, // Arranca de 0.
+             int posicion,         // Arranca de 1.
              int elemento);
 
