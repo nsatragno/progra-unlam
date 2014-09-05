@@ -14,17 +14,6 @@
  */
 int mostrar_menu();
 
-/*
- * Inserta un |elemento| en |array| de |size|, en la |posicion| determinada.
- * Devuelve 0 si falló, 1 de lo contrario.
- */
-int insertar(int *array,
-              const int size, 
-              const int ultima_posicion, // Arranca de 0.
-              int posicion, // Arranca de 1.
-              int elemento);
-
-
 int main(void) {
   int array[SIZE];
   int posicion;
@@ -58,28 +47,6 @@ int main(void) {
         break;
     }
   } while (opcion != SALIR);
-}
-
-int insertar(int *array,
-             const int size, 
-             const int ultima_posicion, 
-             int posicion, 
-             int elemento) {
-  if (posicion > size) {
-    printf("ERROR: Se intentó insertar en una posición no válida\n");
-    return 0;
-  }
-
-  // Nos paramos en el elemento que hay que remplazar.
-  array += posicion - 1;
-  int izquierda = elemento;
-  int derecha;
-  for (int c = posicion; c <= ultima_posicion && c <= size; c++, array++) {
-    derecha = *array;
-    *array = izquierda;
-    izquierda = derecha;
-  }
-  return 1;
 }
 
 int mostrar_menu() {
