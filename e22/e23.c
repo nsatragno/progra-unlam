@@ -2,6 +2,7 @@
 #include "funciones_array.h"
 
 #define SIZE 10
+#define CANTIDAD_ELEMENTOS_AUTOMATICA 7
 #define CARGAR_VALORES 1
 #define INSERTAR 2
 #define VER_VECTOR 3
@@ -20,7 +21,7 @@ int mostrar_menu();
  */
 int insertar_con_orden(int *array,
                        const int size, 
-                       const int ultima_posicion, // Arranca de 0.
+                       int *ultima_posicion, // Arranca de 0.
                        int elemento);
 
 
@@ -28,26 +29,30 @@ int main(void) {
   int array[SIZE];
   int elemento;
   int opcion;
+  // La cantidad de elementos que voy a almacenar.
+  // Es el tamaño menos el "Búfer".
+  int cantidad_elementos = 0;
   do {
     opcion = mostrar_menu();
     switch (opcion) {
       case CARGAR_VALORES:
         // Decido inicializar el array con pares para hacer el testeo
         // más fácil.
-        inicializar_con_pares(array, SIZE);
+        cantidad_elementos = CANTIDAD_ELEMENTOS_AUTOMATICA;
+        inicializar_con_pares(array, cantidad_elementos);
         break;
       case INSERTAR:
         printf("Ingrese el elemento que tiene que insertar\n?: ");
         scanf("%d", &elemento);
-        insertar_con_orden(array, SIZE, SIZE, elemento);
+        insertar_con_orden(array, SIZE, &cantidad_elementos, elemento);
         break;
       case VER_VECTOR:
-        imprimir(array, SIZE);
+        imprimir(array, cantidad_elementos);
         break;
       case LEER_DEL_TECLADO:
-        printf("Si no inserta un array ordenado en forma ascendente, \
-                el comportamiento queda indefinido\n");
-        leer_del_teclado(array, SIZE);
+        printf("%s%s", "Si no inserta un array ordenado en forma ascendente, ",
+                       "el comportamiento queda indefinido.\n");
+        leer_del_teclado(array, &cantidad_elementos, SIZE);
         break;
       case SALIR:
         break;
@@ -60,12 +65,14 @@ int main(void) {
 
 int insertar_con_orden(int *array,
                        const int size, 
-                       const int ultima_posicion, 
+                       int* ultima_posicion, 
                        int elemento) {
   int posicion = 1;
   int *puntero = array;
   // Nos paramos en el elemento que hay que remplazar.
-  while (*puntero < elemento && posicion < size) {
+  while (*puntero < elemento && 
+         posicion < size && 
+         posicion < *ultima_posicion + 1) {
     puntero++;
     posicion++;
   }
