@@ -44,3 +44,12 @@ int insertar(int *array,
     (*ultima_posicion)++;
   return 1;
 }
+
+int posicion_de(int *array, const int size, int elemento) {
+  for (int i = 0; i < size; i++, array++) {
+    if (*array == elemento)
+      return i;
+  }
+  // Si llegamos hasta acá es porque el elemento no estaba en el array.
+  return -1;
+}
