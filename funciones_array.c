@@ -24,23 +24,32 @@ int insertar(int *array,
              int *ultima_posicion, 
              int posicion, 
              int elemento) {
+  // Entre otras cosas, no se permite insertar en el área "en blanco" entre 
+  // size y ultima_posicion a menos que sea inmediatamente a la derecha de
+  // ultima_posicion.
   if (posicion > size || posicion < 0 || posicion > *ultima_posicion + 1) {
     printf("ERROR: Se intentó insertar en una posición no válida\n");
     return 0;
   }
 
-  // Nos paramos en el elemento que hay que remplazar.
-  array += posicion - 1;
-  int izquierda = elemento;
-  int derecha;
-  for (int c = posicion; c <= *ultima_posicion + 1 && c <= size; c++, array++) {
-    derecha = *array;
-    *array = izquierda;
-    izquierda = derecha;
-  }
+  // Guardo la posición en la que se insertará el elemento.
+  int *posicion_insercion = array + posicion - 1;
+
+  // Sitúo el puntero del array justo antes de la última posición que se puede
+  // escribir.
+  int no_perdi_un_valor = (*ultima_posicion < size) ? 1 : 0;
+  array += *ultima_posicion + no_perdi_un_valor;
+
+  // Corro todos los elementos "a la derecha".
+  for (; array != posicion_insercion - 1; array--)
+    *(array + 1) = *array;
+
+  // Agrego el elemento.
+  *posicion_insercion = elemento;
+
   // Si inserté un elemento nuevo y no perdí ninguno, aumento la última 
   // posición utilizada del vector.
-  if (*ultima_posicion < size)
+  if (no_perdi_un_valor)
     (*ultima_posicion)++;
   return 1;
 }
@@ -52,4 +61,22 @@ int posicion_de(int *array, const int size, int elemento) {
   }
   // Si llegamos hasta acá es porque el elemento no estaba en el array.
   return -1;
+}
+
+int eliminar(int *array,
+             const int size, 
+             int* ultima_posicion, 
+             const int posicion) {
+  if (posicion > size || posicion < 0 || posicion > *ultima_posicion + 1) {
+    printf("ERROR: Se intentó eliminar una posición no válida\n");
+    return 0;
+  }
+  // Nos paramos en el elemento que hay que eliminar.
+  array += posicion - 1;
+
+  for (int c = posicion; c <= *ultima_posicion + 1 && c <= size; c++, array++)
+    *array = *(array + 1);
+
+  (*ultima_posicion)--;
+  return 1;
 }

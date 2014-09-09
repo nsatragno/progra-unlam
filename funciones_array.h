@@ -31,7 +31,16 @@ int insertar(int *array,
              int elemento);
 
 /*
- * Devuelve la primera posición del elemento dado en el array.
+ * Devuelve la primera posición del elemento dado en el array. Arranca de 0.
  * Si no existe, devuelve -1.
  */
 int posicion_de(int *array, const int size, int elemento);
+
+/*
+ * Elimina el elemento de un |array| según su |posición|, que arranca en 1.
+ * Devuelve 0 si falló, 1 de lo contrario.
+ */
+int eliminar(int *array,
+             const int size, 
+             int *ultima_posicion, // ultima_posicion arranca de 0.
+             const int posicion);

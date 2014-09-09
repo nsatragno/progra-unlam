@@ -15,16 +15,6 @@
  */
 int mostrar_menu();
 
-/*
- * Elimina el elemento de un |array| según su |posición|, que arranca en 1.
- * Devuelve 0 si falló, 1 de lo contrario.
- */
-int eliminar(int *array,
-             const int size, 
-             int *ultima_posicion, // Arranca de 0.
-             const int posicion);
-
-
 int main(void) {
   int array[SIZE];
   int posicion;
@@ -61,29 +51,6 @@ int main(void) {
         break;
     }
   } while (opcion != SALIR);
-}
-
-int eliminar(int *array,
-             const int size, 
-             int* ultima_posicion, 
-             const int posicion) {
-  if (posicion > size || posicion < 0 || posicion > *ultima_posicion + 1) {
-    printf("ERROR: Se intentó eliminar una posición no válida\n");
-    return 0;
-  }
-  // Nos paramos en el elemento que hay que eliminar.
-  array += posicion - 1;
-
-  int izquierda;
-  int derecha = *array;
-  
-  for (int c = posicion; c <= *ultima_posicion + 1 && c <= size; c++, array++) {
-    izquierda = *(array - 1);
-    *(array - 1) = derecha;
-    derecha = izquierda;
-  }
-  (*ultima_posicion)--;
-  return 1;
 }
 
 int mostrar_menu() {
