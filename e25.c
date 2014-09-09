@@ -4,7 +4,7 @@
 #define SIZE 10
 #define CANTIDAD_ELEMENTOS_AUTOMATICA 7
 #define CARGAR_VALORES 1
-#define BUSCAR 2
+#define ELIMINAR 2
 #define VER_VECTOR 3
 #define LEER_DEL_TECLADO 4
 #define SALIR 5 
@@ -14,16 +14,6 @@
  * ejecutar la función, o salir.
  */
 int mostrar_menu();
-
-/*
- * Elimina el elemento de un |array| según su |posición|, que arranca en 1.
- * Devuelve 0 si falló, 1 de lo contrario.
- */
-int eliminar(int *array,
-             const int size, 
-             int *ultima_posicion, // Arranca de 0.
-             const int posicion);
-
 
 int main(void) {
   int array[SIZE];
@@ -42,14 +32,20 @@ int main(void) {
         cantidad_elementos = CANTIDAD_ELEMENTOS_AUTOMATICA;
         inicializar_con_pares(array, cantidad_elementos);
         break;
-      case BUSCAR:
-        printf("Ingrese el elemento que desea buscar.\n?: ");
+      case ELIMINAR:
+        printf("Ingrese el elemento que desea eliminar.\n?: ");
         scanf("%d", &elemento);
         int posicion = posicion_de(array, cantidad_elementos, elemento);
-        if (posicion == -1)
+        int respuesta;
+        if (posicion == -1) {
           printf("El elemento no se encuentra en el array.\n");
-        else
-          printf("El elemento está en la posición %d.\n", posicion + 1);
+        } else {
+          respuesta = eliminar(array, SIZE, &cantidad_elementos, posicion + 1);
+          if (respuesta)
+            printf("El elemento se ha eliminado.\n");
+          else
+            printf("Ha ocurrido un error.\n");
+        }
         break;
       case VER_VECTOR:
         imprimir(array, cantidad_elementos);
@@ -66,34 +62,12 @@ int main(void) {
   } while (opcion != SALIR);
 }
 
-int eliminar(int *array,
-             const int size, 
-             int* ultima_posicion, 
-             const int posicion) {
-  if (posicion > size || posicion < 0 || posicion > *ultima_posicion + 1) {
-    printf("ERROR: Se intentó eliminar una posición no válida\n");
-    return 0;
-  }
-  // Nos paramos en el elemento que hay que eliminar.
-  array += posicion - 1;
-
-  int izquierda;
-  int derecha = *array;
-  
-  for (int c = posicion; c <= *ultima_posicion + 1 && c <= size; c++, array++) {
-    izquierda = *(array - 1);
-    *(array - 1) = derecha;
-    derecha = izquierda;
-  }
-  (*ultima_posicion)--;
-  return 1;
-}
 
 int mostrar_menu() {
   int decision;
   printf("Elija una opción\n");
   printf("Inicializar vector automáticamente: %d\n", CARGAR_VALORES);
-  printf("Buscar valor: %d\n", BUSCAR);
+  printf("Eliminar valor: %d\n", ELIMINAR);
   printf("Ver vector: %d\n", VER_VECTOR);
   printf("Leer array del teclado: %d\n", LEER_DEL_TECLADO);
   printf("Salir: %d\n", SALIR);
