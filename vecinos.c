@@ -5,9 +5,9 @@
 #define FILAS 10
 #define VECINOS 8
 
-void inicializar(int matriz[COLUMNAS][FILAS], const int columnas, const int filas);
+void inicializar(int matriz[FILAS][COLUMNAS], const int columnas, const int filas);
 
-void obtener_vecinos(int matriz[COLUMNAS][FILAS],
+void obtener_vecinos(int matriz[FILAS][COLUMNAS],
                      const int posicion_col,
                      const int posicion_fil,
                      const int columnas,
@@ -15,7 +15,7 @@ void obtener_vecinos(int matriz[COLUMNAS][FILAS],
                      int vecinos[VECINOS],
                      int *cantidad_vecinos);
 
-void imprimir_matriz(int matriz[COLUMNAS][FILAS], const int columnas, const int filas);
+void imprimir_matriz(int matriz[FILAS][COLUMNAS], const int columnas, const int filas);
 
 int main() {
   int columnas, filas;
@@ -30,7 +30,7 @@ int main() {
   }
     
   
-  int matriz[COLUMNAS][FILAS];
+  int matriz[FILAS][COLUMNAS];
   inicializar(matriz, columnas, filas);
 
   printf("Matriz: \n");
@@ -56,23 +56,23 @@ int main() {
   return 0;
 }
 
-void inicializar(int matriz[COLUMNAS][FILAS], const int columnas, const int filas) {
+void inicializar(int matriz[FILAS][COLUMNAS], const int columnas, const int filas) {
   int c = 1;
-  for (int i = 0; i < columnas; i++)
-    for (int j = 0; j < filas; j++)
+  for (int i = 0; i < filas; i++)
+    for (int j = 0; j < columnas; j++)
       matriz[i][j] = c++;
 }
 
-void imprimir_matriz(int matriz[COLUMNAS][FILAS], const int columnas, const int filas) {
-  for (int j = 0; j < filas; j++) {
-    for (int i = 0; i < columnas; i++) {
+void imprimir_matriz(int matriz[FILAS][COLUMNAS], const int columnas, const int filas) {
+  for (int i = 0; i < filas; i++) {
+    for (int j = 0; j < columnas; j++) {
       printf("%2d ", matriz[i][j]);
     }
     printf("\n");
   }
 }
 
-void obtener_vecinos(int matriz[COLUMNAS][FILAS],
+void obtener_vecinos(int matriz[FILAS][COLUMNAS],
                      const int posicion_col,
                      const int posicion_fil,
                      const int columnas,
@@ -87,9 +87,9 @@ void obtener_vecinos(int matriz[COLUMNAS][FILAS],
   int limite_col_superior = posicion_col >= columnas - 1 ? columnas - 1 : posicion_col + 1;
   int limite_fil_inferior = posicion_fil == 0 ? 0 : posicion_fil - 1;
   int limite_fil_superior = posicion_fil >= filas - 1 ? filas - 1 : posicion_fil + 1;
-  for (int i = limite_col_inferior; i <= limite_col_superior; i++) {
-    for (int j = limite_fil_inferior; j <= limite_fil_superior; j++) {
-        if (i == posicion_col && j == posicion_fil)
+  for (int i = limite_fil_inferior; i <= limite_fil_superior; i++) {
+    for (int j = limite_col_inferior; j <= limite_col_superior; j++) {
+        if (i == posicion_fil && j == posicion_col)
           continue;
         vecinos[(*cantidad_vecinos)++] = matriz[i][j];
       }
