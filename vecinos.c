@@ -24,8 +24,8 @@ int main() {
   printf("Ingrese la cantidad de filas\n?: ");
   scanf("%d", &filas);
 
-  if (filas > FILAS || columnas > COLUMNAS) {
-    printf("No entran esos valores :(\n");
+  if (filas > FILAS || columnas > COLUMNAS || filas <= 0 || columnas <= 0) {
+    printf("No tienen sentido esos valores :(\n");
     return -1;  
   }
     
@@ -80,7 +80,7 @@ void obtener_vecinos(int matriz[FILAS][COLUMNAS],
                      int vecinos[VECINOS],
                      int *cantidad_vecinos) {
   *cantidad_vecinos = 0;
-  if (posicion_col > columnas || posicion_fil > filas)
+  if (posicion_col > columnas || posicion_fil > filas || posicion_col < 0 || posicion_fil < 0)
     return;
 
   int limite_col_inferior = posicion_col == 0 ? 0 : posicion_col - 1;
