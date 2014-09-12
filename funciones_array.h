@@ -1,5 +1,6 @@
 // FUNCIONES_ARRAY.H
 // Nicolás Satragno.
+// Contiene las funciones comunes a los ejercicios que operan sobre arrays.
 #include "funciones_array.c"
 
 /*
@@ -29,3 +30,17 @@ int insertar(int *array,
              int posicion,         // Arranca de 1.
              int elemento);
 
+/*
+ * Devuelve la primera posición del elemento dado en el array. Arranca de 0.
+ * Si no existe, devuelve -1.
+ */
+int posicion_de(int *array, const int size, int elemento);
+
+/*
+ * Elimina el elemento de un |array| según su |posición|, que arranca en 1.
+ * Devuelve 0 si falló, 1 de lo contrario.
+ */
+int eliminar(int *array,
+             const int size, 
+             int *ultima_posicion, // ultima_posicion arranca de 0.
+             const int posicion);

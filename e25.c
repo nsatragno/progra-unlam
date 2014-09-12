@@ -17,8 +17,9 @@ int mostrar_menu();
 
 int main(void) {
   int array[SIZE];
-  int posicion;
+  int elemento;
   int opcion;
+  int posicion;
   // La cantidad de elementos que voy a almacenar.
   // Es el tamaño menos el "Búfer".
   int cantidad_elementos = 0;
@@ -32,16 +33,24 @@ int main(void) {
         inicializar_con_pares(array, cantidad_elementos);
         break;
       case ELIMINAR:
-        printf("Ingrese la posición del elemento que tiene que eliminar\n?: ");
-        scanf("%d", &posicion);
-        eliminar(array, SIZE, &cantidad_elementos, posicion);
+        printf("Ingrese el elemento que desea eliminar.\n?: ");
+        scanf("%d", &elemento);
+        int posicion = posicion_de(array, cantidad_elementos, elemento);
+        int respuesta;
+        if (posicion == -1) {
+          printf("El elemento no se encuentra en el array.\n");
+        } else {
+          respuesta = eliminar(array, SIZE, &cantidad_elementos, posicion + 1);
+          if (respuesta)
+            printf("El elemento se ha eliminado.\n");
+          else
+            printf("Ha ocurrido un error.\n");
+        }
         break;
       case VER_VECTOR:
         imprimir(array, cantidad_elementos);
         break;
       case LEER_DEL_TECLADO:
-        printf("%s%s", "Si no inserta un array ordenado en forma ascendente, ",
-                       "el comportamiento queda indefinido.\n");
         leer_del_teclado(array, &cantidad_elementos, SIZE);
         break;
       case SALIR:
@@ -52,6 +61,7 @@ int main(void) {
     }
   } while (opcion != SALIR);
 }
+
 
 int mostrar_menu() {
   int decision;
