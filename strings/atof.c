@@ -39,7 +39,7 @@ double atof(char *string) {
   int parte_decimal = 0;
 
   // Salteo todos los caracteres hasta el primer número o signo.
-  while (!isnum(*string) && !issigno(*string) && string != '\0')
+  while (!isnum(*string) && !issigno(*string) && *string != '\0')
     string++;
 
   // Por defecto, el signo es positivo.
