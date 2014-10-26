@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1414354830 source:/home/nicolas/Desarrollo/progra-unlam/parcial/palindromos/parcial_lopez/main.c
+	<stdio.h>
+	<stdlib.h>
+
