@@ -1,0 +1,27 @@
+...........................................................................
+Dada una cola circular
+  +-----+--------+--------+
+  |Rubro|Producto|Cantidad|
+  +-----+--------+--------+
+  |Alfa3|  Num32 | Entero |
+  +-----+--------+--------+
+Se tiene un árbol BB cuya clave es rubro, acoplado con n° reg rubros. Se 
+pide actualizar el archivo de forma óptima y crear una lista doblemente
+enlazada ordenada por cantidad con un único nodo rubro que acumule la 
+cantidad.
+Crear un archivo binario con los dato de los 3 rubros con mayor cantidad.
+Archivo:
+Rubro, cantidad.
+............................................................................
+Se pide crear un main y una ó más funciones para descifrar mensaje de texto.
+Se recibe una cadena con el mensaje y se tiene un archivo con
++-----------+-----+
+|Abreviatura|Texto|
++-----------+-----+
+Para remplazar las palabras (separadas por blanco), y otro con
++--------+
+|Palabras|
++--------+
+Si lo que está en el mensaje no se encuentra en los archivos dejarlo en el
+mensaje final entre #. Trabajar de forma óptima.
+............................................................................

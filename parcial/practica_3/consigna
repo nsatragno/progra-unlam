@@ -1,0 +1,44 @@
+1)
+
+Para todos los nodos de ua altura dada, actualizar el archvo de stock.
+
+Archivo de stock:
++----------------+------+
+|Nombre producto | Stock|
++----------------+------+
+
+Nodo árbol
++------------+-------------+
+|N° Registro | Cant vendida|
++------------+-------------+
+
+Indicar cuántos registros se actualizaron
+
+2)
+
+Dada una lista doblementenlazada con claves repetidas y desordenada
++------+-------------------+
+|Clave | Cant eliminadas   |
++------+-------------------+
+Dado un ABB donde cada nodo tiene
++-----+
+|Clave|
++-----+
+Se pide al usuario ingresar una clave si existe en el ABB
+Eliminar todas las hojas a partir de esa raíz y actalizar la lista dejando un único nodo por clave buscada actualizando la cantidad de eliminados.
+Actualizar el archivo, invirtiendo cada nombre y normalizando poniendo la 1era en mayúscula y las demás en minúsculas.
+Archivo:
++------+-------------------+
+|Nombre| Cant eliminadas   |
++------+-------------------+
+|Clave = N° Registro arch  |
++------+-------------------+
+Indique dónde le conviene que esté el puntero de la lista.
+
+3)
+
+1era Letra de de cada palabra M
+Última minúscula.
+Eliminar las del medio.
+Si la palabra tiene una única letra, mayúscula.
+Eliminar los blancos iniciales, finales, y dejar solo 1 espacio entre palabras.
