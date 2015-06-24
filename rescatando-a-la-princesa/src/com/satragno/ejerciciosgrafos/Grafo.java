@@ -73,10 +73,6 @@ public class Grafo {
             i = predecesores[i];
             camino.add(i);
         }
-        List<Integer> caminoRevertido = new ArrayList<Integer>(camino.size());
-        for (int j = camino.size() - 1; j >= 0; j--) {
-            caminoRevertido.add(camino.get(j));
-        }
-        return caminoRevertido;
+        return camino;
     }
 }
